@@ -1,0 +1,96 @@
+<h1>Joguinho Adivinha</h1>
+
+<input type="text">
+<button>OK</button>
+
+<script>
+
+const sortear = () => {
+    
+    return Math.round(Math.random() * 10);
+
+    }
+
+const sorteiaNumero = (quantidade) => {
+   
+    var conjunto = [];
+    let contador = 1;
+   
+    while (contador <= quantidade){  
+        
+        let numeroSorteado = sortear();
+
+        if (numeroSorteado !== 0){
+            
+            var achou = false;
+
+            for (let posicao = 0; posicao <= conjunto.length; posicao++){
+            
+                if (conjunto[posicao] == numeroSorteado){
+                    achou = true;
+                    break;
+                }   
+            
+            }    
+            if (achou == false){
+                conjunto.push(numeroSorteado);
+                contador++;
+            }            
+        }       
+    }
+    return conjunto; 
+}
+
+
+// declare a quantidade de numeros que sera gerados aleatoriamente aqui
+var conjunto = sorteiaNumero(1);
+console.log(conjunto);
+
+var input = document.querySelector("input");
+var button = document.querySelector("button");
+
+input.focus();
+// button.disabled = true;
+
+const verifica = () => {
+    
+    var achou = false;
+
+    for (let posicao = 0; posicao <= conjunto.length; posicao++){
+        
+        if (input.value == conjunto[posicao]){
+            
+            alert("parabens acertou :moyai:");
+            alert("atualize a pagina para que novos valores sejam gerados");
+            achou = true;
+            break;
+        }
+    }
+    
+    if (achou == false){
+        
+        alert("errou otario");
+        
+    }    
+
+}
+
+alert("insira um numero ali porra")
+button.onclick = verifica;
+
+/* function adivinha(chances){
+    
+    let tentativa = 1;
+    
+    while (tentativa < chances){
+        button.disabled = false;
+        
+            
+    } 
+                       
+}
+
+adivinha(3)
+*/
+
+</script>
